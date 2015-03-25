@@ -86,7 +86,8 @@ class KDLKinematics(object):
             else:
                 self.joint_limits_lower.append(None)
                 self.joint_limits_upper.append(None)
-            if jnt.safety_controller is not None:
+            if jnt.safety_controller is not None and (
+                hasattr(jnt.safety_controller,"upper") and hasattr(jnt.safety_controller,"lower")):
                 self.joint_safety_lower.append(jnt.safety_controller.lower)
                 self.joint_safety_upper.append(jnt.safety_controller.upper)
             elif jnt.limit is not None:
