@@ -74,16 +74,16 @@ class JointKinematics(KDLKinematics):
     ##
     # Joint angles listener callback
     def _joint_state_cb(self, msg):
-        if self._joint_state_inds is None:
+        if True and self._joint_state_inds is None:
             joint_names_list = self.get_joint_names()
             self._joint_state_inds = [msg.name.index(joint_name) for 
                                      joint_name in joint_names_list]
-        if len(msg.position) == len(self._joint_state_inds):
-            self._joint_angles = [msg.position[i] for i in self._joint_state_inds]
-        if len(msg.velocity) == len(self._joint_state_inds):
-            self._joint_velocities = [msg.velocity[i] for i in self._joint_state_inds]
-        if len(msg.effort) == len(self._joint_state_inds):
-            self._joint_efforts = [msg.effort[i] for i in self._joint_state_inds]
+        #if len(msg.position) == len(self._joint_state_inds):
+        self._joint_angles = [msg.position[i] for i in self._joint_state_inds]
+        #if len(msg.velocity) == len(self._joint_state_inds):
+        self._joint_velocities = [msg.velocity[i] for i in self._joint_state_inds]
+        #if len(msg.effort) == len(self._joint_state_inds):
+        self._joint_efforts = [msg.effort[i] for i in self._joint_state_inds]
 
     ##
     # Wait until we have found the current joint angles.
